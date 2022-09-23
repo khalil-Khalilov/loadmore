@@ -4,7 +4,7 @@ require('function.php');
 ?>
 
 <?php
-$image_req = $pdo->prepare('SELECT * FROM `img`');
+$image_req = $pdo->prepare('SELECT * FROM `img` ORDER BY `id` DESC LIMIT 15');
 
 $image_req->execute();
 ?>
@@ -19,9 +19,11 @@ $image_req->execute();
     <body>
 
         <div id="on_off-btns">
-            <div class="sun off">   <button>  <img src="img/sun.png" alt="light mode" title="On button">    </button>    </div>
-            <div class="moon">      <button>  <img src="img/moon.png" alt="dark mode" title="Off button">   </button>    </div> 
+            <div class="sun off">   <button>  <img src="img/btns/sun.png" alt="light mode" title="On button">    </button>    </div>
+            <div class="moon">      <button>  <img src="img/btns/moon.png" alt="dark mode" title="Off button">   </button>    </div> 
         </div>
+
+        
 
         <section>
             <div id="gallery">
@@ -29,7 +31,7 @@ $image_req->execute();
                 while($all_image = $image_req->fetch()){
                 ?>
                 <div>
-                    <a href=""><img src="<?= $all_image['image_root']; ?>" title="Inna's photo" alt="image" /></a>
+                    <a href=""><img src="<?= $all_image['image_root']; ?>" title="Girl's photo" alt="image" /></a>
                 </div>
                 <?php
                 }
@@ -37,8 +39,11 @@ $image_req->execute();
             
             </div>
         </section>
+
+        <button id="loadMore_btn">Load More</button>
     </body>
 
     <script src="app.js"></script>
 
 </html>
+
