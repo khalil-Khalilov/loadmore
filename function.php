@@ -1,14 +1,13 @@
 <?php
-function connexion($bdd)
-{
-    $pdo = new PDO("mysql:host=localhost;dbname=$bdd;charset=utf8", 'root', '');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    if (!$pdo) :
-        echo 'Connexion echouée';
-    else :
-        return $pdo;
-    endif;
+if(in_array ('pdo_mysql', get_loaded_extensions())) {
+    $dsn = "mysql:host=localhost;dbname=loadmore";
+    $opt = [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC];
+    try {
+        $pdo = new PDO($dsn, "root", '', $opt);
+    } catch (\PDOException $pdoe) {
+    }
+} else {
+    echo "PHP extension for MySQL is not set".PHP_EOL;
+    exit(1);
 }
-
-$pdo = connexion('loadmore');
+?>

@@ -34,7 +34,7 @@ $image_req->execute();
                 <?php
                 }
                 ?>
-
+            
             </div>
         </section>
     </body>
